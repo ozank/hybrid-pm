@@ -1,0 +1,35 @@
+/21/05/2012
+/Dimensions for the hybrid PM Machine Optimization
+/NdFeB and Samarium-Cobalt magnet
+
+WINDOW OUTLINE=NO
+
+/ set a filename
+/$ STRING filename     /home/okeysan/Desktop/Linear_dene/skew_analysis/2012_03_24_linear_small
+$ STRING filename     2012_05_22_hybrid_pm
+
+/DIMENSIONS
+$CONS #R_out	100
+$CONS #hs	20
+$CONS #ac	1
+
+$CONS #R_in	#R_out-#hs-#ac
+$CONS #w	3
+
+$CONS #N_sym	12
+$CONS #alfa_sym 360/#N_sym
+
+/NdFeB Magnet Dimensions
+/$CONS #k_radius_neo	1
+/$CONS #k_angle_neo	0.6
+/$CONS #h_neo		10
+
+/Samarium Magnet Dimensions
+/$CONS #k_radius_sam	0.8
+/$CONS #k_angle_sam	0.95
+/$CONS #rotation_sam	20
+/$CONS #L_sam		30
+/$CONS #W_sam		8
+
+/Extra Air
+/$CONS #k_extra_air	0.4

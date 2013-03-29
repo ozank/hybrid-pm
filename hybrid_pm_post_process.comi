@@ -1,0 +1,24 @@
+/COMI FILE TO CALCULATE AIRGAP FLUX DENSITY DISTRIBUTION FOR HYBRID PM
+/22/05/2012
+
+/Dimensions
+$ COMINPUT FILE=dimensions_hybrid_pm_constant.comi MODE=CONT COMMENTSTYLE=LINE
+$ COMINPUT FILE=dimensions_hybrid_pm_variable.comi MODE=CONT COMMENTSTYLE=LINE
+
+
+ACTIVATE CASE=1 MODELSYMMETRY=DATABASE FILE='&filename&.op3' | LOAD 
+SELECT ACTION=DEFAULT | SELECT ACTION=SELECT OPTION=SURFACES | THREED OPTION=REFRESH
+
+ARC  X1=#R_in+0.5*#ac Y1=0 Z1=0.5*#w X2=(#R_in+0.5*#ac)*cosd(#alfa_sym) Y2=(#R_in+0.5*#ac)*sind(#alfa_sym) Z2=0.5*#w XC=0 YC=0 ZC=0.5*#w NP=30 BUFFER=Arc 
+
+
+/CHECK IF THE FILE EXISTS
+$ EXIST 'airgap_flux.table'
+$ IF FILEEXISTS EQ 1
+  TABLE INFILE=TEMP Arc OUTFILE='airgap_flux' COLUMNS=2 F1=atand(Y/X) NAME1=angle UNIT1T=1 F2=(Bx*x+By*y)/sqrt(x*x+y*y) NAME2=flux UNIT2T=1 
+  YES
+$ ELSE
+  TABLE INFILE=TEMP Arc OUTFILE='airgap_flux' COLUMNS=2 F1=atand(Y/X) NAME1=angle UNIT1T=1 F2=(Bx*x+By*y)/sqrt(x*x+y*y) NAME2=flux UNIT2T=1 
+$ END IF
+
+END

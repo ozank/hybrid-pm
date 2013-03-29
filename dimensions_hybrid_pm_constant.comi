@@ -1,0 +1,8 @@
+$STRING filename	/var/tmp/hybrid_pm_03_06/2012_06_03_hybrid_pm
+$CONS #R_out	112
+$CONS #hs	30
+$CONS #ac	2
+$CONS #R_in	80
+$CONS #w	3
+$CONS #N_sym	12
+$CONS #alfa_sym	30
